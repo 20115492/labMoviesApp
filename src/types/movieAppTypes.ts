@@ -6,15 +6,20 @@ import { paths } from "./generated/tmdb";
 export type DiscoverMoviesProps = paths["/3/discover/movie"]["get"]["responses"][200]["content"]["application/json"];
 
 // Type for a single movie object from the discover movies response
-export type DiscoverMovieOverviewProps =  NonNullable<DiscoverMoviesProps["results"]>[number];
+export type DiscoverMovieOverviewProps =  NonNullable<DiscoverMoviesProps["results"]>[number] & {
+favourite: boolean;
+};
 
 // Props interface for components that display a list of movies
 export type BaseMovieListProps  ={
   movies: NonNullable<DiscoverMoviesProps["results"]>;
+  selectFavourite: (movieId: number) => void;
 }
 
 // Type for the API response when fetching detailed movie information
-export type MovieDetailsProps = paths["/3/movie/{movie_id}"]["get"]["responses"][200]["content"]["application/json"];
+export type MovieDetailsProps = paths["/3/movie/{movie_id}"]["get"]["responses"][200]["content"]["application/json"] & {
+favourite: boolean;
+};
 
 export type MovieImage = {
   file_path: string;

@@ -27,7 +27,7 @@ const MovieListPage = () => {
 
   const genreId = Number(genreFilter);
 
-const displayedMovies = movies
+  const displayedMovies = movies
     .filter((m: DiscoverMovieOverviewProps) => {
       return (m.title ?? "").toLowerCase().search(titleFilter.toLowerCase()) !== -1;
     })
@@ -39,6 +39,13 @@ const displayedMovies = movies
       if (type === "title") setTitleFilter(value);
       else setGenreFilter(value);
     };
+
+  const addToFavourites = (movieId: number) => {
+    const updatedMovies = movies.map((m: DiscoverMovieOverviewProps) =>
+      m.id === movieId ? { ...m, favourite: true } : m
+    );
+    setMovies(updatedMovies);
+  };
 
   useEffect(() => {
     fetch(
@@ -61,7 +68,7 @@ return (
           <Header title={"Home Page"} />
         </Grid>
         <Grid item container spacing={5}>
-          <MovieList movies={displayedMovies}></MovieList>
+          <MovieList movies={displayedMovies} selectFavourite={addToFavourites} />
         </Grid>
       </Grid>
       <Fab
