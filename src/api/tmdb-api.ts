@@ -19,8 +19,8 @@ export const getMovies = () => {
         "&language=en-US"
     )
       .then(res => res.json())
-      .then(json => json.genres);
-  };
+
+    };
   
   export const getMovieImages = ( id : string | number) => {
     return fetch(
