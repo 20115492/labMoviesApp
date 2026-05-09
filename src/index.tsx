@@ -3,6 +3,7 @@ import { BrowserRouter, Route, Navigate, Routes , Link} from "react-router-dom";
 import HomePage from "./pages/HomePage";
 import MoviePage from "./pages/MovieDetailsPage";
 import FavouriteMoviesPage from "./pages/FavouriteMoviesPage";
+import MovieReviewPage from "./pages/MovieReviewPage";
 
 const App = () => {
   return (
@@ -16,6 +17,7 @@ const App = () => {
         </li>
       </ul>
       <Routes>
+        <Route path="/reviews/:id" element={<MovieReviewPage/>} />
         <Route path="/movies/favourites" element={<FavouriteMoviesPage />} />
         <Route path="/movies/:id" element={<MoviePage />} />
         <Route path="/" element={<HomePage />} />
