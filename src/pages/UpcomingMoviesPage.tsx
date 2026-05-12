@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import PageTemplate from '../components/TemplateMovieListPage';
 import { DiscoverMovieOverviewProps } from "../types/movieAppTypes";// Changed
 import { getUpcomingMovies } from "../api/tmdb-api";
+import AddToFavouritesIcon from "../components/cardIcons/AddToFavourites";
 
 const UpcomingMoviesPage = () => {
   const [movies, setMovies] = useState<DiscoverMovieOverviewProps[]>([]); // Changed
@@ -26,7 +27,9 @@ const UpcomingMoviesPage = () => {
     <PageTemplate
       title='Upcoming Movies'
       movies={movies}
-      selectFavourite={addToFavourites}
+      action={(movie: BaseMovieProps) => {
+        return <AddToFavouritesIcon {...movie} />
+      }}
     />
   );
 };
